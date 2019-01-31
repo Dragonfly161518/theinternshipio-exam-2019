@@ -28,7 +28,6 @@ class Word {
         for(let i = 0 ; i < this.word.length ; i++) {
             if(this.guessWord[i] !== undefined) {
                 result.push(this.guessWord[i])
-                this.guessCorrectCount++
             } else {
                 result.push("[]")
             }
@@ -42,6 +41,7 @@ class Word {
             status = true
             for(let i = 0 ; i < this.word.length ; i++) {
                 if(word == this.word[i]) {
+                    this.guessCorrectCount++
                     this.guessWord[i] = word
                 }
             }

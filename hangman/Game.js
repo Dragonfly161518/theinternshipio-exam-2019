@@ -11,6 +11,10 @@ class Hangman {
     constructor(category) {
         this.allWordGuess = []
         this.score = 0
+        this.wrongGuess = 0
+        this.correctGuess = 0
+        this.remainGuess = 0
+        this.wrongGuessList = []
         this.category = category
         this.Word = new Word(category)
         console.log(chalk.yellow("Hint: " + this.Word.getHint))
@@ -34,10 +38,13 @@ class Hangman {
     guess() {
         if(this.allWordGuess.length >= 10) {
             this.endGame()
+            return  
         }
 
         // Display process and incorrect word
         this.Word.guessProcess()
+        console.log("You score is : " + this.score + " Wrong guess : " + this.wrongGuess + " ( " + 
+        this.wrongGuessList.join(",") + " ) Correct guess: " + this.correctGuess)
 
         inq.prompt(ps.questionGuess)
             .then( ({word}) => {
@@ -53,6 +60,10 @@ class Hangman {
             if(this.Word.updateGuessWord(word)) {
                 // word guess is correct 
                 console.log(chalk.yellow("You guess right got ") + chalk.green(this.scoring()) + chalk.yellow(" point!"))
+                this.correctGuess++
+            } else {
+                this.wrongGuessList.push(word)
+                this.wrongGuess++
             }
             if(this.Word.isWin()) {
                 console.log("You win!!")
