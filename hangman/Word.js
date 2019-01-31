@@ -5,16 +5,17 @@ const inq = require('inquirer')
 
 class Word {
     constructor(category) {
-        fs.readFile("./" + category + ".txt", (err,data) => {
-            if(err) {
-                console.log(err)
-                return
-            }
-        })
+        this.word = fs.readFileSync("./"+ category + ".txt")
+        this.word = "Moon"
+        this.hint = "Shines light at night"
     }
     
     get getWord() {
         return this.word
+    }
+
+    get getHint() {
+        return this.hint
     }
 
     static getCategory() {

@@ -1,0 +1,5 @@
+waiter menu,order,restaurant
+photographer darkroom, camera,film
+mechanic engine,wrench,repair
+dentist teeth, drill
+architect design, blueprint

@@ -6,7 +6,7 @@ module.exports.selectCategory = {
     choices: Word.getCategory
 }
 
-module.exports.guessWord = {
+module.exports.questionGuess = {
     type: 'input',
     name: 'word',
     message: 'Guess some word!',
