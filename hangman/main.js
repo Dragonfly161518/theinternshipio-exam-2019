@@ -1,14 +1,9 @@
-const inquirer = require('inquirer');
-const wordManager = require('./wordManager');
+const ps = require('./PromptSetting')
+const inquirer = require('inquirer')
+const Game = require('./Game')
+const fs = require('fs')
 
-inquirer
-  .prompt(
-    {
-      type: 'list',
-      name: 'category',
-      message: 'Select Category',
-      choices: wordManager.getCategory()
-    })
-  .then(({category}) => {
-    console.log(wordManager.getWord(category));
-  });
+;( async () => {
+    const {category} = await inquirer.prompt(ps.selectCategory)
+    new Game(category)
+})()

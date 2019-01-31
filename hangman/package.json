@@ -9,6 +9,7 @@
   "author": "dragonfly161518",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^2.4.2",
     "inquirer": "^6.2.1"
   }
 }
