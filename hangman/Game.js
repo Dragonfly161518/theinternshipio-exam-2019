@@ -52,11 +52,10 @@ class Hangman {
             this.allWordGuess.push(word)
             if(this.Word.updateGuessWord(word)) {
                 // word guess is correct 
-                this.scoring()
-                console.log("")
+                console.log(chalk.yellow("You guess right got ") + chalk.green(this.scoring()) + chalk.yellow(" point!"))
             }
             if(this.Word.isWin()) {
-                console.log(chalk.orange("You win!!"))
+                console.log("You win!!")
             } else {
                 this.guess()
             }
@@ -65,6 +64,9 @@ class Hangman {
 
     scoring() {
         // Some Logic About Scoring
+        let score = 30
+        this.score += score
+        return score
     }
 
     endGame() {

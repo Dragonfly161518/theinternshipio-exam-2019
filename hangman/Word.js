@@ -6,10 +6,21 @@ const inq = require('inquirer')
 class Word {
     constructor(category) {
         this.word = fs.readFileSync("./"+ category + ".txt")
-        this.word = "moon"
+        this.word = "moon312421!!!"
         this.hint = "Shines light at night"
         this.guessWord = new Array(this.word.length)
         this.guessCorrectCount = 0
+        this.init()
+    }
+
+    init() {
+        for(let i = 0 ; i < this.word.length ; i++) {
+            console.log(this.word.charCodeAt(i))
+            if(this.word.charCodeAt(i) < 97 || this.word.charCodeAt(i) > 122) {
+                this.guessWord[i] = this.word[i];
+                this.guessCorrectCount++
+            }
+        }
     }
     
     guessProcess() {
@@ -22,7 +33,7 @@ class Word {
                 result.push("[]")
             }
         }
-        console.log(chalk.blue("Current Word is:" + result.join(" ")))
+        console.log(chalk.blue("Current Word is: " + result.join(" ")))
     }
 
     updateGuessWord(word) {
