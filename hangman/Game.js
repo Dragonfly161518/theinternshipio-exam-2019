@@ -9,12 +9,10 @@ module.exports = color
 class Hangman {
 
     constructor(category) {
-        this.guessWord = []
+        this.allWordGuess = []
         this.score = 0
         this.category = category
         this.Word = new Word(category)
-        this.length = this.Word.getWord.length
-        this.playerGuessWord = []
         console.log(chalk.yellow("Hint: " + this.Word.getHint))
         this.guess()
     }
@@ -34,11 +32,12 @@ class Hangman {
     }
 
     guess() {
-        if(this.guessWord.length >= 10) {
+        if(this.allWordGuess.length >= 10) {
             this.endGame()
         }
 
-        this.displayState()
+        // Display process and incorrect word
+        this.Word.guessProcess()
 
         inq.prompt(ps.questionGuess)
             .then( ({word}) => {
@@ -47,21 +46,20 @@ class Hangman {
     }
 
     checking(word) {
-        if(this.guessWord.indexOf(word) > 0) {
-            const indexWord = this.word.indexOf(word)
-            if(indexWord > 0) {
-                playerGuessWord[index]
-                this.scoring()
-            } else {
-
-            }
+        if(this.allWordGuess.indexOf(word) > 0) {
+            this.guess()
         } else {
+            this.allWordGuess.concat(word)
+            if(this.updateGuessWord(word)) {
+                // word guess is correct 
+                this.scoring()
+            }
             this.guess()
         }
     }
 
     scoring() {
-
+        // Some Logic About Scoring
     }
 
     endGame() {
