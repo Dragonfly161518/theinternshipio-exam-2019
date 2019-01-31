@@ -9,7 +9,7 @@ class Word {
         this.word = "moon"
         this.hint = "Shines light at night"
         this.guessWord = new Array(this.word.length)
-        
+        this.guessCorrectCount = 0
     }
     
     guessProcess() {
@@ -17,11 +17,12 @@ class Word {
         for(let i = 0 ; i < this.word.length ; i++) {
             if(this.guessWord[i] !== undefined) {
                 result.push(this.guessWord[i])
+                this.guessCorrectCount++
             } else {
                 result.push("[]")
             }
         }
-        console.log(result.join(" "))
+        console.log(chalk.blue("Current Word is:" + result.join(" ")))
     }
 
     updateGuessWord(word) {
@@ -34,8 +35,11 @@ class Word {
                 }
             }
         }
-        this.guessProcess()
         return status
+    }
+
+    isWin() {
+        return this.guessCorrectCount == this.word.length
     }
 
 

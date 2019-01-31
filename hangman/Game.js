@@ -37,7 +37,8 @@ class Hangman {
         }
 
         // Display process and incorrect word
-        // this.Word.guessProcess()
+        this.Word.guessProcess()
+
         inq.prompt(ps.questionGuess)
             .then( ({word}) => {
                 this.checking(word)
@@ -52,9 +53,13 @@ class Hangman {
             if(this.Word.updateGuessWord(word)) {
                 // word guess is correct 
                 this.scoring()
-                console.log('GUESS TRUE')
+                console.log("")
             }
-            this.guess()
+            if(this.Word.isWin()) {
+                console.log(chalk.orange("You win!!"))
+            } else {
+                this.guess()
+            }
         }
     }
 
