@@ -17,6 +17,10 @@ class Hangman {
         this.wrongGuessList = []
         this.category = category
         this.Word = new Word(category)
+        this.maxGuess = 10
+        if(this.Word.getWord.length >= 8) {
+            this.maxGuess = this.Word.getWord.length + 5
+        }
         console.log(chalk.yellow("Hint: " + this.Word.getHint))
         this.guess()
     }
@@ -36,15 +40,10 @@ class Hangman {
     }
 
     guess() {
-        if(this.allWordGuess.length >= 10) {
+        if(this.allWordGuess.length >= this.maxGuess) {
             this.endGame()
             return  
         }
-
-        // Display process and incorrect word
-        this.Word.guessProcess()
-        console.log("You score is : " + this.score + " Wrong guess : " + this.wrongGuess + " ( " + 
-        this.wrongGuessList.join(",") + " ) Correct guess: " + this.correctGuess)
 
         inq.prompt(ps.questionGuess)
             .then( ({word}) => {
@@ -65,8 +64,14 @@ class Hangman {
                 this.wrongGuessList.push(word)
                 this.wrongGuess++
             }
+
+            // Display process and incorrect word
+            this.Word.guessProcess()
+            console.log("You score is : " + this.score + " Wrong guess : " + this.wrongGuess + " ( " + 
+            this.wrongGuessList.join(",") + " ) Correct guess: " + this.correctGuess)
+
             if(this.Word.isWin()) {
-                console.log("You win!!")
+                console.log(chalk.green("You win!!"))
             } else {
                 this.guess()
             }
