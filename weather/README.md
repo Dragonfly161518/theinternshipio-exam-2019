@@ -19,10 +19,10 @@ Tel: 099-4299325 <br>
 เข้าไฟล์ Weather
 
 ```
-    node main.js [filename]
+    node index.js [filename]
 ```
 
-รันไฟล์ main.js ด้วย nodejs และส่งชื่อไฟล์ผ่าน parameter filename (xml file)
+รันไฟล์ index.js ด้วย nodejs และส่งชื่อไฟล์ผ่าน parameter filename (xml file)
 
 > Output: weather.json (JSON file)
 
